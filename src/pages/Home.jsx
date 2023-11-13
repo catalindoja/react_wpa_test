@@ -2,7 +2,7 @@ import React from "react";
 import Homeimage from "../img/homeimage.jpg";
 import Logo from "../img/logo.png";
 import FoodContent from "../img/foodcontent.jpeg";
-import Card from "../components/Card";
+import Card from "../components/ProductCard";
 
 const cardsinfo = [
     {
@@ -23,7 +23,7 @@ const cardsinfo = [
 
 const Home = () => {
     return (
-        <div className="Welcome">
+        <div className="container Welcome">
                 <h1 className="title1">Welcome To Happy Tummy</h1>
             <img src={Homeimage} alt="Home Image" className="img-fluid" />
             
