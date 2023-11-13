@@ -12,7 +12,7 @@ import ProfileIcon from "../img/profile.jpg"
 
 const Menu = () => {
     return (
-        <div className="w-100 fixed-bottom">
+        <div className="w-100 sticky-bottom">
             <Link to="/">
                 <img src="../img/logo2.png" alt="" className="logo" />
             </Link>
