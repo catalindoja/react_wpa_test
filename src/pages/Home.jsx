@@ -3,6 +3,7 @@ import Homeimage from "../img/homeimage.jpg";
 import Logo from "../img/logo.png";
 import FoodContent from "../img/foodcontent.jpeg";
 import Card from "../components/ProductCard";
+import { Link } from "react-router-dom";
 
 const cardsinfo = [
     {
@@ -54,7 +55,13 @@ const Home = () => {
                 ))}
                 </div>
             </div>
-        </div>
+            <div className="scanner">
+                <Link to={"/scanner/"}>
+                    <button>Scan product</button>
+                </Link>
+             </div>
+        
+        </div>  
     
     
        
