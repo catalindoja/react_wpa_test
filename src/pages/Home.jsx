@@ -60,7 +60,11 @@ const Home = () => {
                     <button>Scan product</button>
                 </Link>
              </div>
-        
+            <div className="container">
+            <label>Email address</label>
+                <input name="email" type="email" className="form-control"
+                  id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+            </div>
         </div>  
     
     
