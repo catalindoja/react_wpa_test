@@ -15,24 +15,32 @@ const Scanner = () => {
 
   const handleSearch = async () => {
     console.log('Searching for:', searchQuery);
-
+  
     try {
       // Make an API call to the specified endpoint
       const response = await axios.get(`/products/frombarcode/${searchQuery}`);
       console.log(response);
-
+  
       // Assuming the response contains an 'id' field
       const productId = response.data[0].id;
       setProductId(productId);
-
+  
       console.log('Product ID:', productId);
-
+  
+      // Show notification
+      if ('Notification' in window && Notification.permission === 'granted') {
+        new Notification(`Product ID: ${productId}`, {
+          body: 'Redirecting to product page...',
+        });
+      }
+  
       // Redirect to the "/product/{id}" route
       window.location.href = `/app/products/${productId}`;
     } catch (error) {
       console.error('Error fetching product data:', error);
     }
   };
+  
 
   return (
     <div className="container text-center mt-5">
