@@ -15,6 +15,8 @@ import Porfile from './pages/Profile';
 import SingleProduct from './pages/SingleProduct';
 import PostProduct from './pages/PostProduct';
 import PostRecipe from './pages/PostRecipe';
+import EditPerfil from './pages/EditPerfil';
+import Products from './pages/Products'
 
 import {
   createBrowserRouter,
@@ -84,11 +86,23 @@ const router = createBrowserRouter([
         path: "postrecipe",
         element: <PostRecipe />
       },
+      {
+        path: "editprofile/:id",
+        element: <EditPerfil />
+      },
+      {
+        path: "products",
+        element: <Products />
+      },
+      {
+        path: "scanner",
+        element: <Scanner />
+      }
     ]
   }
 ]);
 
-function App() {
+const App = () => {
   return (
     <div className="app">
       <div className="w-100">

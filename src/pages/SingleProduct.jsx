@@ -23,6 +23,7 @@ const SingleProduct = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const postId = location.pathname.split("/")[3];
+
     
   // - post: an object that contains the details of the post
   const [post, setPost] = useState({});

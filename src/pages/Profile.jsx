@@ -7,13 +7,21 @@ import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import RecipeCard from "../components/RecipeCard";
+import { useNavigate } from "react-router-dom";
 
 import { AuthContext } from "../context/authContext";
 
 function Profile() {
 
+    const navigate = useNavigate();
     // Obtaining the current user
     const { currentUser } = useContext(AuthContext);
+
+    const handleEditProfile = () => {
+        const user = JSON.parse(localStorage.getItem("user"))
+        console.log(user.id)
+        navigate("/app/editprofile/"+user.id);
+    }
 
     // Obtain products
     let [myproducts, setMyproducts] = useState([]);
@@ -61,13 +69,12 @@ function Profile() {
                 <div class="alert alert-warning" role="alert">
                     Go premium!
                 </div>
-                <img className="edit" src={Edit} alt="" />
+                <img className="edit" src={Edit} onClick={handleEditProfile} alt="" />
             </div>
 
             <h4 className="maintitles">My products 🛒</h4>
             <div>
                 <div className="card-container">
-                    console.log(myproducts)
                     {myproducts.map(post => (
                         <ProductCard
                             image={post.image_url}
@@ -82,7 +89,6 @@ function Profile() {
             <h4 className="maintitles">My recipes 🥧</h4>
             <div>
                 <div className="card-container">
-                    console.log(myrecipes)
                     {myrecipes.map(post => (
                         <RecipeCard
                             image={post.image_url}
