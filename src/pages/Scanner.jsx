@@ -7,10 +7,16 @@ const Scanner = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [productId, setProductId] = useState(null);
 
-  const handleScan = (code) => {
-    setSearchQuery(code);
+  const [barcode, setIdUser] = useState({
+    barcode: ''
+  });
+
+  const handleScan = async (code) => {
     console.log(code);
-    handleSearch();
+    barcode.barcode = code
+    console.log(barcode.barcode)
+    alert(code)
+    alert(barcode.barcode)
   };
 
   const handleSearch = async () => {
