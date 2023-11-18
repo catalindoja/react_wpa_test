@@ -28,7 +28,7 @@ const Scanner = () => {
       console.log('Product ID:', productId);
 
       // Redirect to the "/product/{id}" route
-      //window.location.href = `/app/products/${productId}`;
+      window.location.href = `/app/products/${productId}`;
     } catch (error) {
       console.error('Error fetching product data:', error);
     }
