@@ -67,6 +67,7 @@ function Profile() {
             <h4 className="maintitles">My products 🛒</h4>
             <div>
                 <div className="card-container">
+                    console.log(myproducts)
                     {myproducts.map(post => (
                         <ProductCard
                             image={post.image_url}
@@ -81,6 +82,7 @@ function Profile() {
             <h4 className="maintitles">My recipes 🥧</h4>
             <div>
                 <div className="card-container">
+                    console.log(myrecipes)
                     {myrecipes.map(post => (
                         <RecipeCard
                             image={post.image_url}
