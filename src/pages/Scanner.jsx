@@ -15,8 +15,13 @@ const Scanner = () => {
     console.log(code);
     barcode.barcode = code
     console.log(barcode.barcode)
-    alert(code)
-    alert(barcode.barcode)
+    //alert(code)
+    //alert(barcode.barcode)
+    const response = await axios.get("/app/products/"+barcode.barcode);
+    if(response.data.length > 0){
+      const id = response.data[0].id
+      console.log("IDProduct: "+ response.data[0].id)
+    }
   };
 
   const handleSearch = async () => {
