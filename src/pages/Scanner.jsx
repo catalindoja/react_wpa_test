@@ -19,8 +19,9 @@ const Scanner = () => {
     //alert(barcode.barcode)
     const response = await axios.get("/app/products/"+barcode.barcode);
     if(response.data.length > 0){
+      console.log(response)
       const id = response.data[0].id
-      console.log("IDProduct: "+ response.data[0].id)
+      console.log("IDProduct: "+ response.data.id)
     }
   };
 
