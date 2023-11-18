@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BarcodeScanner from '../components/BarcodeScanner';
 import axios from 'axios';
 
@@ -6,6 +6,14 @@ const Scanner = () => {
   const [scannedCode, setScannedCode] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [productId, setProductId] = useState(null);
+
+  useEffect(() => {
+    // Trigger the search when scannedCode changes
+    if (scannedCode) {
+      setSearchQuery(scannedCode);
+      handleSearch();
+    }
+  }, [scannedCode]);
 
   const handleScan = (code) => {
     setScannedCode(code);
