@@ -7,17 +7,10 @@ const Scanner = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [productId, setProductId] = useState(null);
 
-  useEffect(() => {
-    // Trigger the search when scannedCode changes
-    if (scannedCode) {
-      setSearchQuery(scannedCode);
-      handleSearch();
-    }
-  }, [scannedCode]);
-
   const handleScan = (code) => {
     setScannedCode(code);
     console.log(code);
+    handleSearch();
   };
 
   const handleSearch = async () => {
