@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import BarcodeScanner from '../components/BarcodeScanner';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const Scanner = () => {
+  const navigate = useNavigate();
   const [scannedCode, setScannedCode] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [productId, setProductId] = useState(null);
@@ -17,11 +19,12 @@ const Scanner = () => {
     console.log(barcode.barcode)
     //alert(code)
     //alert(barcode.barcode)
-    const response = await axios.get("/app/products/"+barcode.barcode);
+    const response = await axios.get("/products/frombarcode/"+barcode.barcode);
     if(response.data.length > 0){
-      console.log(response)
-      const id = response.data[0].id
-      console.log("IDProduct: "+ response.data.id)
+      const productId = response.data[0].id
+      navigate("/app/products/"+productId);
+    }else{
+      alert("Product not registered in the database.")
     }
   };
 
