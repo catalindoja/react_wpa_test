@@ -1,10 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Counter from './components/Counter';
 import BarcodeScanner from './pages/Scanner';
-import Home from './pages/Home';
+import Splash from './pages/Splash';
 import Menu from './components/Menu';
+import Register from './pages/Register'
+import Login from './pages/Login'
+import Scanner from './pages/Scanner';
+import Init from './pages/Init';
+import Home from './pages/Home';
+import Search from './pages/Search';
+import SingleRecipe from './pages/SingleRecipe';
+import Porfile from './pages/Profile';
+import SingleProduct from './pages/SingleProduct';
+import PostProduct from './pages/PostProduct';
+import PostRecipe from './pages/PostRecipe';
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -14,9 +25,7 @@ import {
 const Layout = () => {
   return (
     <>
-
       <Outlet />
-      <Counter />
       <Menu />
     </>
   );
@@ -25,17 +34,57 @@ const Layout = () => {
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Init />
+  },
+  {
+    path: "/login",
+    element: <Login />
+  },
+  {
+    path: "/register",
+    element: <Register />
+  },
+  {
+    path: "/app",
     element: <Layout />,
     children: [
       {
-        path: "/",
+        path: "home",
         element: <Home />
-      }
+      },
+      {
+        path: "splash",
+        element: <Splash />
+      },
+      {
+        path: "profile",
+        element: <Porfile />
+      },
+      {
+        path: "search",
+        element: <Search />
+      },
+      {
+        path: "products/:id",
+        element: <SingleProduct />
+      },
+      {
+        path: "recipes/:id",
+        element: <SingleRecipe />
+      },
+      {
+        path: "scanner",
+        element: <Scanner />
+      },
+      {
+        path: "postproduct",
+        element: <PostProduct />
+      },
+      {
+        path: "postrecipe",
+        element: <PostRecipe />
+      },
     ]
-  },
-  {
-    path: "/scanner",
-    element: <BarcodeScanner />
   }
 ]);
 

@@ -1,0 +1,24 @@
+/* Estilos para el componente Home */
+
+/* Se aplica a todo el contenido de Home */
+.home_content {
+    padding: 20px; /* Ajustar el relleno para el contenido */
+
+  .maintitles{
+    margin-top: 20px;
+  }
+  
+  /* Ajustar estilos para los elementos de los carruseles, si es necesario */
+  .carousel {
+    /* Tus estilos para el carrusel */
+  }
+  
+  /* Ajustar estilos para los botones del carrusel, si es necesario */
+  .carousel-control-prev,
+  .carousel-control-next {
+    /* Tus estilos para los botones de control del carrusel */
+  }
+  }
+  
+
+  
