@@ -85,6 +85,7 @@ const SingleProduct = () => {
       try {
         // Obtain comments
         const res = await axios.get(`/comments/`);
+        console.log(res)
         const resArr = Array.from(res)
         const filteredComments = resArr.data.filter((comment) => comment.idproduct == postId);
         setComments(filteredComments);
@@ -107,6 +108,7 @@ const SingleProduct = () => {
         try {
           // Get stock
           const res1 = await axios.get(`/stock/`);
+          console.log(res1)
           const resArr1 = Array.from(res1)
           const filteredStock = resArr1.data.filter((stock) => stock.idproduct == postId);
           setStock(filteredStock);
@@ -114,6 +116,7 @@ const SingleProduct = () => {
           // Get supermarkets
           const myid = stock[0].idsupermarket
           const res2 = await axios.get(`/markets/`);
+          console.log(res2)
           const resArr2 = Array.from(res2)
           const filteredMarkets = resArr2.data.filter((markets) => markets.id == myid);
           setMarkets(filteredMarkets[0]);
@@ -123,12 +126,14 @@ const SingleProduct = () => {
 
         // Obtain productallergies and allergies
         const res3 = await axios.get(`/productallergies/`);
+        console.log(res3)
         const resArr3 = Array.from(res3)
         const filteredProductallergies = resArr3.data.filter((productallergies) => productallergies.idproduct == postId);
 
         // Obtain the IDs of the allergies
         const allergyIds = filteredProductallergies.map((productallergy) => productallergy.idallergies);
         const res4 = await axios.get(`/allergies/`);
+        console.log(res4)
         const resArr4 = Array.from(res4)
         const filteredAllergies = resArr4.data.filter((allergy) => allergyIds.includes(allergy.id));
         setAllergies(filteredAllergies);
