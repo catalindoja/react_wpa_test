@@ -44,7 +44,7 @@
     "workbox-streams": "^6.6.0"
   },
   "scripts": {
-    "start": "serve dev -s -n -L -p $PORT",
+    "start": "serve build -s -n -L -p $PORT",
     "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
