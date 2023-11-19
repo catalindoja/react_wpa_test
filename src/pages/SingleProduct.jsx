@@ -15,7 +15,7 @@ import "./SingleProduct.css";
 
 // Create the SingleProduct component
 const SingleProduct = () => {
-  const proxy = "https://happytummy-backend-production.up.railway.app/"
+  const proxy = "https://happytummy-backend-production.up.railway.app"
   // Set up state variables
   // - location: an object that contains the details of the current URL
   // - navigate: a function that redirects the user to another page
