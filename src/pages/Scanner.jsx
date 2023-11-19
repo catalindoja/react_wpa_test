@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 const Scanner = () => {
+  const proxy = "https://happytummy-backend-production.up.railway.app"
   const navigate = useNavigate();
   const [scannedCode, setScannedCode] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -20,7 +21,7 @@ const Scanner = () => {
     //alert(code)
     //alert(barcode.barcode)
     try {
-      axios.get("/products/frombarcode/" + barcode.barcode)
+      axios.get(proxy + "/products/frombarcode/" + barcode.barcode)
         .then(response => {
           if (response && response.data && response.data.length > 0) {
             const productId = response.data[0].id;
@@ -45,7 +46,7 @@ const Scanner = () => {
   
     try {
       // Make an API call to the specified endpoint
-      const response = await axios.get(`/products/frombarcode/${searchQuery}`);
+      const response = await axios.get(proxy+`/products/frombarcode/${searchQuery}`);
       console.log(response);
   
       // Assuming the response contains an 'id' field
