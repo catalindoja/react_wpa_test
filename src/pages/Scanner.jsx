@@ -19,12 +19,24 @@ const Scanner = () => {
     console.log(barcode.barcode)
     //alert(code)
     //alert(barcode.barcode)
-    const response = await axios.get("/products/frombarcode/"+barcode.barcode);
-    if(response.data.length > 0){
-      const productId = response.data[0].id
-      navigate("/app/products/"+productId);
-    }else{
-      alert("Product not registered in the database.")
+    try {
+      axios.get("/products/frombarcode/" + barcode.barcode)
+        .then(response => {
+          if (response && response.data && response.data.length > 0) {
+            const productId = response.data[0].id;
+            navigate("/app/products/" + productId);
+          } else {
+            console.log("No data found for the barcode");
+            // Handle the case when response is empty or data doesn't exist
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching data:", error);
+          // Handle errors, like network issues or server problems
+        });
+    } catch (error) {
+      console.error("Error occurred:", error);
+      // Handle any synchronous errors
     }
   };
 
