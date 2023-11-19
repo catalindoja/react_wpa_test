@@ -15,7 +15,7 @@ import "./SingleProduct.css";
 
 // Create the SingleProduct component
 const SingleProduct = () => {
-
+  const proxy = "https://happytummy-backend-production.up.railway.app/"
   // Set up state variables
   // - location: an object that contains the details of the current URL
   // - navigate: a function that redirects the user to another page
@@ -84,14 +84,14 @@ const SingleProduct = () => {
 
       try {
         // Obtain comments
-        const res = await axios.get(`/comments/`);
+        const res = await axios.get(proxy+`/comments/`);
         console.log(res)
         const resArr = Array.from(res)
         const filteredComments = resArr.data.filter((comment) => comment.idproduct == postId);
         setComments(filteredComments);
 
         // Obtain users who wrote the comments
-        const userPromises = filteredComments.map((comment) => axios.get(`/users/${comment.iduser}`));
+        const userPromises = filteredComments.map((comment) => axios.get(proxy+`/users/${comment.iduser}`));
         const userResponses = await Promise.all(userPromises);
 
         // Create an object that contains the details of the users who wrote the comments
@@ -107,7 +107,7 @@ const SingleProduct = () => {
         // Obtain stock and supermarkets
         try {
           // Get stock
-          const res1 = await axios.get(`/stock/`);
+          const res1 = await axios.get(proxy+`/stock/`);
           console.log(res1)
           const resArr1 = Array.from(res1)
           const filteredStock = resArr1.data.filter((stock) => stock.idproduct == postId);
@@ -115,7 +115,7 @@ const SingleProduct = () => {
 
           // Get supermarkets
           const myid = stock[0].idsupermarket
-          const res2 = await axios.get(`/markets/`);
+          const res2 = await axios.get(proxy+`/markets/`);
           console.log(res2)
           const resArr2 = Array.from(res2)
           const filteredMarkets = resArr2.data.filter((markets) => markets.id == myid);
@@ -125,32 +125,32 @@ const SingleProduct = () => {
         }
 
         // Obtain productallergies and allergies
-        const res3 = await axios.get(`/productallergies/`);
+        const res3 = await axios.get(proxy+`/productallergies/`);
         console.log(res3)
         const resArr3 = Array.from(res3)
         const filteredProductallergies = resArr3.data.filter((productallergies) => productallergies.idproduct == postId);
 
         // Obtain the IDs of the allergies
         const allergyIds = filteredProductallergies.map((productallergy) => productallergy.idallergies);
-        const res4 = await axios.get(`/allergies/`);
+        const res4 = await axios.get(proxy+`/allergies/`);
         console.log(res4)
         const resArr4 = Array.from(res4)
         const filteredAllergies = resArr4.data.filter((allergy) => allergyIds.includes(allergy.id));
         setAllergies(filteredAllergies);
 
-        const res5 = await axios.get(`/products/${postId}`);
+        const res5 = await axios.get(proxy+`/products/${postId}`);
         setPost(res5.data);
 
         // Obtain owner of the post
-        const response = await axios.get(`/users/${idOwner}`);
+        const response = await axios.get(proxy+`/users/${idOwner}`);
         setOwner(response.data);
 
         // Obtain brand of the post
-        const res6 = await axios.get(`/brands/${idBrand}`);
+        const res6 = await axios.get(proxy+`/brands/${idBrand}`);
         setBrand(res6.data);
 
         // Obtain category of the post
-        const res7 = await axios.get(`/categories/${idCategory}`);
+        const res7 = await axios.get(proxy+`/categories/${idCategory}`);
         setCategory(res7.data);
 
       } catch (err) {
@@ -170,7 +170,7 @@ const SingleProduct = () => {
   // Delete post
   const handleDelete = async () => {
     try {
-      const productResponse = await axios.delete(`/products/${post.id}`);
+      const productResponse = await axios.delete(proxy+`/products/${post.id}`);
       navigate("/app/home")
     } catch (err) {
       if (err.response) {
