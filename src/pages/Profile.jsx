@@ -8,11 +8,14 @@ import axios from "axios";
 import ProductCard from "../components/ProductCard";
 import RecipeCard from "../components/RecipeCard";
 import { useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../context/authContext";
+import Logo2 from "../img/logo2.png";
+import { useTranslation } from 'react-i18next';
+import Configration from "../components/Configration";
+import { BACKEND_API_URL } from '../config/proxy.js';
 
 function Profile() {
-
+    const { t } = useTranslation();
     const navigate = useNavigate();
     // Obtaining the current user
     const { currentUser } = useContext(AuthContext);
@@ -28,7 +31,7 @@ function Profile() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/products`);
+                const res = await axios.get(`${BACKEND_API_URL}/products`);
                 console.log(res.data);
                 setMyproducts(res.data);
 
@@ -46,7 +49,7 @@ function Profile() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/recipes`);
+                const res = await axios.get(`${BACKEND_API_URL}/recipes`);
                 console.log(res.data);
                 setMyrecipes(res.data);
 
@@ -61,18 +64,19 @@ function Profile() {
 
     return (
         <div className="profile_content">
+            <Configration />
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
 
             <div className="profile_card">
                 <img className="profilepic" src={Profilepic} alt="" />
-                <h4 className="username">{currentUser.username}</h4>
+                <h6 className="username">{currentUser.username}</h6>
                 <div class="alert alert-warning" role="alert">
                     Go premium!
                 </div>
                 <img className="edit" src={Edit} onClick={handleEditProfile} alt="" />
             </div>
 
-            <h4 className="maintitles">My products 🛒</h4>
+            <span className="maintitles">{t('my_products')} <span className="icon2">🛒</span></span>
             <div>
                 <div className="card-container">
                     {myproducts.map(post => (
@@ -86,7 +90,7 @@ function Profile() {
                 </div>
             </div>
 
-            <h4 className="maintitles">My recipes 🥧</h4>
+            <span className="maintitles">{t('my_recipes')} <span className="icon2">🥧</span></span>
             <div>
                 <div className="card-container">
                     {myrecipes.map(post => (
