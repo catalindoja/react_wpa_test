@@ -18,6 +18,7 @@ import PostRecipe from './pages/PostRecipe';
 import EditPerfil from './pages/EditPerfil';
 import Products from './pages/Products';
 import { i18n } from 'i18next';
+import Map_test from './pages/map_test';
 
 import {
   createBrowserRouter,
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
       {
         path: "scanner",
         element: <Scanner />
+      },
+      {
+        path: "map",
+        element: <Map_test />
       }
     ]
   }
